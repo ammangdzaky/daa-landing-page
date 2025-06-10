@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Subset Sum Problem - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Subset Sum Problem</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Subset Sum Problem</h1>
+                <p class="summary-tag-label">Dynamic Programming / Backtracking</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Subset Sum Problem adalah masalah penentuan apakah ada subset dari sekumpulan bilangan bulat positif yang jumlahnya sama dengan target tertentu. Ini adalah masalah NP-Complete dalam kasus umum, tetapi dapat diselesaikan secara efisien dengan algoritma pseudo-polinomial menggunakan **Dynamic Programming** atau dengan **Backtracking**.</p>
+                    <p>Contoh: Diberikan set $S = \{3, 34, 4, 12, 5, 2\}$ dan target sum $T = 9$. Apakah ada subset dari $S$ yang jumlahnya 9? Ya, $\{4, 5\}$ atau $\{3, 4, 2\}$.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Pendekatan</h2>
+                    <p>Ada dua pendekatan umum untuk menyelesaikan Subset Sum Problem:</p>
+
+                    <h3>a. Pendekatan Dynamic Programming (DP)</h3>
+                    <p>Pendekatan DP melibatkan pembuatan tabel (biasanya boolean) yang menunjukkan apakah suatu jumlah dapat dicapai dengan menggunakan subset dari item-item yang telah dipertimbangkan hingga saat ini.</p>
+                    <p><strong>Langkah-langkah DP:</strong></p>
+                    <ol>
+                        <li>Buat tabel boolean `dp[sum+1][n+1]`, di mana `dp[i][j]` bernilai `true` jika jumlah `i` dapat dibentuk menggunakan subset dari `j` item pertama.</li>
+                        <li>Inisialisasi `dp[0][j]` sebagai `true` (jumlah 0 selalu dapat dibentuk dengan subset kosong) dan `dp[i][0]` sebagai `false` (kecuali `dp[0][0]`) untuk `i > 0`.</li>
+                        <li>Isi tabel secara iteratif:
+                            <ul>
+                                <li>Untuk setiap item `arr[j-1]` dan setiap jumlah `i`:</li>
+                                <li>`dp[i][j] = dp[i][j-1]` (tidak menyertakan item saat ini)</li>
+                                <li>Jika `i >= arr[j-1]`, maka `dp[i][j] = dp[i][j] OR dp[i - arr[j-1]][j-1]` (menyertakan item saat ini).</li>
+                            </ul>
+                        </li>
+                        <li>Hasilnya ada di `dp[target_sum][n]`.</li>
+                    </ol>
+
+                    <h3>b. Pendekatan Backtracking</h3>
+                    <p>Pendekatan backtracking mengeksplorasi semua kemungkinan subset secara rekursif. Pada setiap langkah, untuk setiap elemen, ada dua pilihan: menyertakannya dalam subset atau tidak.</p>
+                    <p><strong>Langkah-langkah Backtracking:</strong></p>
+                    <ol>
+                        <li>Mulai dengan jumlah saat ini 0 dan indeks item pertama.</li>
+                        <li>Pada setiap langkah rekursif, ada dua cabang:
+                            <ul>
+                                <li>Sertakan item saat ini: Tambahkan item ke jumlah saat ini dan rekursif panggil untuk item berikutnya.</li>
+                                <li>Jangan sertakan item saat ini: Rekursif panggil untuk item berikutnya tanpa menambahkan item saat ini ke jumlah.</li>
+                            </ul>
+                        </li>
+                        <li>Jika jumlah saat ini sama dengan target, solusi ditemukan.</li>
+                        <li>Jika jumlah saat ini melebihi target atau semua item sudah dipertimbangkan tanpa mencapai target, backtrack.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi (DP)</h2>
+                    <p>Set $S = \{2, 3, 7, 8, 10\}$, Target Sum $T = 11$.</p>
+                    <p>Tabel DP (kolom mewakili item, baris mewakili sum):</p>
+                    <pre><code>
+Sum\Item | {} | {2} | {2,3} | {2,3,7} | {2,3,7,8} | {2,3,7,8,10}
+------------------------------------------------------------------
+0        | T  | T   | T     | T       | T         | T
+1        | F  | F   | F     | F       | F         | F
+2        | F  | T   | T     | T       | T         | T
+3        | F  | F   | T     | T       | T         | T
+4        | F  | T   | T     | T       | T         | T
+5        | F  | F   | T     | T       | T         | T
+6        | F  | T   | T     | T       | T         | T
+7        | F  | F   | F     | T       | T         | T
+8        | F  | T   | F     | T       | T         | T
+9        | F  | F   | T     | T       | T         | T
+10       | F  | T   | F     | T       | T         | T
+11       | F  | F   | T     | T       | T         | T  (True, ada subsetnya)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma (DP)</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION isSubsetSum(set, n, sum):
+    // dp[i][j] is true if sum 'i' can be achieved with elements from set[0...j-1]
+    dp = CREATE BOOLEAN ARRAY of size (sum + 1) x (n + 1)
+
+    // Jika sum adalah 0, maka hasilnya true (dengan subset kosong)
+    FOR j FROM 0 TO n:
+        dp[0][j] = TRUE
+
+    // Jika set kosong dan sum > 0, maka hasilnya false
+    FOR i FROM 1 TO sum:
+        dp[i][0] = FALSE
+
+    // Isi tabel dp secara bottom up
+    FOR i FROM 1 TO sum: // Iterasi untuk setiap kemungkinan jumlah
+        FOR j FROM 1 TO n: // Iterasi untuk setiap item di set
+            dp[i][j] = dp[i][j-1] // Case 1: Tidak menyertakan item set[j-1]
+
+            IF i >= set[j-1]:
+                dp[i][j] = dp[i][j] OR dp[i - set[j-1]][j-1] // Case 2: Menyertakan item set[j-1]
+
+    RETURN dp[sum][n] // Hasil akhir
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu (DP):</strong> $O(sum \times N)$, di mana $N$ adalah jumlah elemen dalam set, dan $sum$ adalah target jumlah. Ini adalah pseudo-polinomial karena tergantung pada nilai `sum`, bukan hanya ukuran input.</li>
+                        <li><strong>Kompleksitas Waktu (Backtracking):</strong> $O(2^N)$ pada kasus terburuk, karena setiap elemen memiliki dua kemungkinan (disertakan atau tidak).</li>
+                        <li><strong>Kompleksitas Ruang (DP):</strong> $O(sum \times N)$ untuk tabel DP. Bisa dioptimalkan menjadi $O(sum)$ jika hanya menyimpan dua baris terakhir.</li>
+                        <li><strong>Kompleksitas Ruang (Backtracking):</strong> $O(N)$ untuk stack rekursi.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li> क्रिप्टografi (subset sum adalah masalah yang sulit).</li>
+                        <li>Pengoptimalan sumber daya (misalnya, memilih item untuk dipaketkan ke dalam kapasitas tertentu).</li>
+                        <li>Pembuatan sistem kasir untuk memberikan kembalian dengan koin/uang kertas yang tersedia.</li>
+                        <li>Manajemen inventaris.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="rat-in-a-maze.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

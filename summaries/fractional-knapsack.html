@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Fractional Knapsack - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Fractional Knapsack</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Fractional Knapsack</h1>
+                <p class="summary-tag-label">Greedy Algorithm</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Fractional Knapsack Problem adalah masalah optimasi yang termasuk dalam kategori algoritma Greedy. Diberikan satu tas (knapsack) dengan kapasitas maksimum tertentu dan sejumlah item. Setiap item memiliki berat (weight) dan nilai (value) tertentu. Tujuannya adalah untuk mengisi tas sedemikian rupa sehingga nilai total item yang dibawa semaksimal mungkin, dengan batasan kapasitas tas. Dalam masalah ini, item dapat diambil secara parsial (pecahan), tidak harus utuh.</p>
+                    <p>Karena sifatnya yang 'pecahan', masalah ini dapat diselesaikan dengan pendekatan greedy, berbeda dengan 0/1 Knapsack Problem yang lebih kompleks dan biasanya diselesaikan dengan Dynamic Programming.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Pendekatan Greedy</h2>
+                    <p>Strategi greedy untuk Fractional Knapsack adalah dengan selalu memilih item yang memberikan nilai per unit berat (density) tertinggi. Ini memastikan bahwa kita selalu mengambil "bagian" item yang paling efisien terlebih dahulu.</p>
+                    <p><strong>Langkah-langkah Algoritma Greedy:</strong></p>
+                    <ol>
+                        <li>Untuk setiap item, hitung rasio nilai per unit berat ($value / weight$).</li>
+                        <li>Urutkan semua item berdasarkan rasio nilai per unit berat ini secara menurun (dari yang tertinggi ke terendah).</li>
+                        <li>Mulai dari item dengan rasio tertinggi:
+                            <ul>
+                                <li>Jika kapasitas tas masih cukup untuk mengambil seluruh item, ambil item tersebut sepenuhnya dan kurangi kapasitas tas.</li>
+                                <li>Jika kapasitas tas tidak cukup untuk seluruh item, ambil sebagian dari item tersebut hingga kapasitas tas terisi penuh. Hitung nilai yang diperoleh dari bagian item tersebut.</li>
+                            </ul>
+                        </li>
+                        <li>Ulangi langkah 3 sampai tas penuh atau semua item sudah dipertimbangkan.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Misalkan Kapasitas Tas (W) = 50 kg.</p>
+                    <p>Item yang tersedia:</p>
+                    <ul>
+                        <li>Item A: Berat = 10 kg, Nilai = $60 (Rasio = 60/10 = 6)</li>
+                        <li>Item B: Berat = 20 kg, Nilai = $100 (Rasio = 100/20 = 5)</li>
+                        <li>Item C: Berat = 30 kg, Nilai = $120 (Rasio = 120/30 = 4)</li>
+                    </ul>
+
+                    <p><strong>Langkah 1 & 2: Hitung Rasio & Urutkan (terurut menurun berdasarkan rasio):</strong></p>
+                    <ol>
+                        <li>Item A: Rasio = 6 (Berat: 10, Nilai: $60)</li>
+                        <li>Item B: Rasio = 5 (Berat: 20, Nilai: $100)</li>
+                        <li>Item C: Rasio = 4 (Berat: 30, Nilai: $120)</li>
+                    </ol>
+
+                    <p><strong>Langkah 3: Proses Pengambilan Item:</strong></p>
+                    <ul>
+                        <li><strong>Ambil Item A:</strong>
+                            <ul>
+                                <li>Kapasitas sisa = 50 kg. Item A beratnya 10 kg.</li>
+                                <li>Ambil seluruh Item A. Nilai = $60. Berat diambil = 10 kg.</li>
+                                <li>Kapasitas sisa = 50 - 10 = 40 kg. Total Nilai = $60.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ambil Item B:</strong>
+                            <ul>
+                                <li>Kapasitas sisa = 40 kg. Item B beratnya 20 kg.</li>
+                                <li>Ambil seluruh Item B. Nilai = $100. Berat diambil = 20 kg.</li>
+                                <li>Kapasitas sisa = 40 - 20 = 20 kg. Total Nilai = $60 + $100 = $160.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Ambil Item C:</strong>
+                            <ul>
+                                <li>Kapasitas sisa = 20 kg. Item C beratnya 30 kg.</li>
+                                <li>Kapasitas tidak cukup untuk seluruh Item C. Ambil sebagian: 20 kg dari 30 kg.</li>
+                                <li>Nilai yang diambil dari Item C = (20/30) * $120 = (2/3) * $120 = $80.</li>
+                                <li>Kapasitas sisa = 20 - 20 = 0 kg (tas penuh). Total Nilai = $160 + $80 = $240.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p><strong>Nilai Maksimal yang Didapat: $240</strong></p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION FractionalKnapsack(items, capacity):
+    // Hitung rasio nilai/berat untuk setiap item
+    FOR EACH item IN items:
+        item.ratio = item.value / item.weight
+
+    // Urutkan item berdasarkan rasio secara menurun
+    SORT items by item.ratio in descending order
+
+    total_value = 0
+    current_capacity = capacity
+
+    FOR EACH item IN items:
+        IF current_capacity == 0:
+            BREAK // Tas sudah penuh
+
+        IF item.weight <= current_capacity:
+            // Ambil seluruh item
+            total_value = total_value + item.value
+            current_capacity = current_capacity - item.weight
+        ELSE:
+            // Ambil sebagian item
+            fraction = current_capacity / item.weight
+            total_value = total_value + (item.value * fraction)
+            current_capacity = 0 // Tas penuh
+            BREAK // Tas sudah penuh
+
+    RETURN total_value
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong>
+                            <ul>
+                                <li>Menghitung rasio: $O(N)$</li>
+                                <li>Pengurutan item: $O(N \log N)$, di mana N adalah jumlah item.</li>
+                                <li>Mengisi tas: $O(N)$ (sekali iterasi setelah pengurutan).</li>
+                                <li>Total: $O(N \log N)$</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(N)$ untuk menyimpan item dan rasio.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>Pemilihan rute pengiriman yang paling efisien berdasarkan nilai dan biaya.</li>
+                        <li>Alokasi sumber daya dengan batasan anggaran untuk memaksimalkan keuntungan.</li>
+                        <li>Pemilihan portofolio investasi untuk memaksimalkan return.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="huffman-coding.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

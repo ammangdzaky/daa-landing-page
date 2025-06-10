@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: N-Queens Problem - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">N-Queens Problem</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: N-Queens Problem</h1>
+                <p class="summary-tag-label">Backtracking Algorithm</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>N-Queens Problem adalah masalah klasik dalam ilmu komputer dan matematika. Tujuannya adalah menempatkan N ratu (queens) pada papan catur berukuran $N \times N$ sedemikian rupa sehingga tidak ada dua ratu yang saling menyerang. Dalam aturan catur, ratu dapat menyerang ratu lain jika berada di baris, kolom, atau diagonal yang sama.</p>
+                    <p>Masalah ini adalah contoh yang sangat baik untuk dipecahkan menggunakan pendekatan **Backtracking**.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Pendekatan Backtracking</h2>
+                    <p>Pendekatan Backtracking untuk N-Queens Problem melibatkan penempatan ratu satu per satu di setiap kolom. Untuk setiap ratu yang akan ditempatkan, kita mencoba setiap baris yang mungkin. Jika penempatan aman (tidak diserang oleh ratu lain yang sudah ada), kita lanjutkan ke kolom berikutnya. Jika tidak ada baris yang aman di kolom saat ini, kita "mundur" (backtrack) ke kolom sebelumnya dan mencoba posisi lain untuk ratu di kolom tersebut.</p>
+                    <p><strong>Langkah-langkah Algoritma Backtracking:</strong></p>
+                    <ol>
+                        <li>Mulai dari kolom pertama (kolom 0).</li>
+                        <li>Untuk kolom saat ini, coba tempatkan ratu di setiap baris (mulai dari baris 0 hingga N-1).</li>
+                        <li>Sebelum menempatkan ratu di posisi $(row, col)$, periksa apakah posisi tersebut aman:
+                            <ul>
+                                <li>Tidak ada ratu lain di baris yang sama.</li>
+                                <li>Tidak ada ratu lain di kolom yang sama (ini sudah terjamin karena kita menempatkan ratu per kolom).</li>
+                                <li>Tidak ada ratu lain di diagonal atas-kiri.</li>
+                                <li>Tidak ada ratu lain di diagonal bawah-kiri.</li>
+                            </ul>
+                        </li>
+                        <li>Jika posisi aman:
+                            <ul>
+                                <li>Tempatkan ratu di posisi tersebut.</li>
+                                <li>Rekursif panggil fungsi untuk kolom berikutnya ($col + 1$).</li>
+                            </ul>
+                        </li>
+                        <li>Jika panggilan rekursif berhasil (semua ratu berhasil ditempatkan hingga kolom terakhir), maka temukan satu solusi. Anda bisa menyimpan solusi ini.</li>
+                        <li>Jika panggilan rekursif gagal (tidak ada posisi aman di kolom saat ini, atau rekursi dari kolom berikutnya tidak menemukan solusi), maka "hapus" ratu dari posisi saat ini (backtrack) dan coba baris berikutnya di kolom yang sama.</li>
+                        <li>Jika semua baris di kolom saat ini sudah dicoba dan tidak ada yang berhasil, kembalikan kontrol ke panggilan rekursif sebelumnya.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi (untuk N=4)</h2>
+                    <p>Tujuan: Menempatkan 4 ratu di papan $4 \times 4$.</p>
+                    <p>Salah satu solusi (R menandakan Ratu, . menandakan kosong):</p>
+                    <pre><code>
+. R . .
+. . . R
+R . . .
+. . R .
+                    </code></pre>
+                    <p><strong>Penjelasan Singkat Proses:</strong></p>
+                    <ul>
+                        <li>Ratu 1 di (0,1).</li>
+                        <li>Ratu 2 mencoba baris di kolom 2, menemukan (1,3) aman.</li>
+                        <li>Ratu 3 mencoba baris di kolom 3, menemukan (2,0) aman.</li>
+                        <li>Ratu 4 mencoba baris di kolom 4, menemukan (3,2) aman.</li>
+                        <li>Solusi ditemukan!</li>
+                    </ul>
+                    <p>Jika pada suatu langkah tidak ada posisi aman, algoritma akan kembali ke ratu sebelumnya dan mencoba posisi lain.</p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION solveNQueens(board_size):
+    board = CREATE N x N empty board (e.g., array of characters '.')
+    solutions = [] // Untuk menyimpan semua solusi yang ditemukan
+    
+    // Fungsi rekursif untuk menempatkan ratu
+    FUNCTION placeQueen(col):
+        IF col == board_size:
+            // Semua ratu berhasil ditempatkan, tambahkan solusi ke daftar
+            solutions.ADD(board.COPY())
+            RETURN
+
+        FOR row FROM 0 TO board_size - 1:
+            IF isSafe(row, col, board_size, board):
+                board[row][col] = 'Q' // Tempatkan ratu
+                placeQueen(col + 1)   // Panggil rekursif untuk kolom berikutnya
+                board[row][col] = '.' // Backtrack: Hapus ratu (undo)
+
+    // Fungsi pembantu untuk memeriksa keamanan posisi
+    FUNCTION isSafe(row, col, board_size, board):
+        // Cek baris ini di sisi kiri
+        FOR c FROM 0 TO col - 1:
+            IF board[row][c] == 'Q':
+                RETURN FALSE
+        
+        // Cek diagonal atas kiri
+        r = row
+        c = col
+        WHILE r >= 0 AND c >= 0:
+            IF board[r][c] == 'Q':
+                RETURN FALSE
+            r = r - 1
+            c = c - 1
+            
+        // Cek diagonal bawah kiri
+        r = row
+        c = col
+        WHILE r < board_size AND c >= 0:
+            IF board[r][c] == 'Q':
+                RETURN FALSE
+            r = r + 1
+            c = c - 1
+            
+        RETURN TRUE
+
+    placeQueen(0) // Mulai proses dari kolom 0
+    RETURN solutions
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong>
+                            <ul>
+                                <li>Secara teoritis, sulit untuk memberikan kompleksitas waktu yang presisi karena sifat backtracking. Pada kasus terburuk, algoritma mungkin mencoba semua permutasi.</li>
+                                <li>Kompleksitasnya mendekati $O(N!)$, karena setiap ratu bisa ditempatkan di N posisi, dan ada N ratu, tetapi ada pruning (pemotongan cabang) yang mengurangi pencarian.</li>
+                                <li>Rata-rata, jauh lebih baik dari $O(N!)$, tetapi tetap eksponensial.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(N^2)$ untuk papan catur, atau $O(N)$ jika hanya melacak posisi ratu per kolom. Stack rekursi juga $O(N)$.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>Dasar untuk memahami algoritma Backtracking.</li>
+                        <li>Permasalahan penjadwalan atau alokasi sumber daya yang kompleks dengan banyak batasan.</li>
+                        <li>Digunakan dalam pengujian software untuk menghasilkan skenario uji coba.</li>
+                        <li>Permainan dan Puzzle.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="subset-sum-problem.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
