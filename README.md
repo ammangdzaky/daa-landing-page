@@ -78,4 +78,4 @@ Tertarik pada pengembangan web, coding, dan algoritma.
 
 ## Lisensi
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE). *(Opsional: jika Anda ingin menambahkan file lisensi. Jika tidak, baris ini bisa dihapus.)*
+Proyek ini dilisensikan di bawah [MIT License](LICENSE). 
