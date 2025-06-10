@@ -50,7 +50,7 @@ Tidak ada dependensi eksternal yang perlu diinstal (selain browser web modern).
 Anda dapat melihat landing page ini secara langsung di:
 
 **[https://ammangdzaky.github.io/daa-landing-page/](https://ammangdzaky.github.io/daa-landing-page/)**
-*(Catatan: Link ini akan aktif setelah Anda mengunggah proyek ke GitHub dan mengaktifkan GitHub Pages. Ganti `ammangdzaky` dengan username GitHub Anda dan `daa-landing-page` dengan nama repository Anda.)*
+
 
 ---
 
