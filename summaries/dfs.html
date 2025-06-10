@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Depth-First Search (DFS) - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Depth-First Search (DFS)</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Depth-First Search (DFS)</h1>
+                <p class="summary-tag-label">Graph Traversal</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Depth-First Search (DFS) adalah algoritma untuk melintasi atau mencari pohon atau struktur data graf. Algoritma ini memulai dari node (simpul) akar (atau node awal yang dipilih) dan mengeksplorasi sejauh mungkin di sepanjang setiap cabang sebelum melakukan backtracking. Dengan kata lain, DFS akan bergerak "dalam" sejauh mungkin di satu jalur sebelum kembali dan mencoba jalur lain.</p>
+                    <p>DFS dapat digunakan untuk menemukan konektivitas, siklus, dan komponen terhubung dalam graf.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Mekanisme</h2>
+                    <p>DFS menggunakan struktur data tumpukan (stack) atau rekursi (yang secara implisit menggunakan stack panggilan sistem) untuk menyimpan node-node yang akan dikunjungi. Ini memastikan bahwa node dikunjungi secara mendalam.</p>
+                    <p><strong>Langkah-langkah Algoritma (menggunakan rekursi):</strong></p>
+                    <ol>
+                        <li>Mulai dari node awal (sumber), tandai node tersebut sebagai "dikunjungi".</li>
+                        <li>Proses node yang dikunjungi tersebut (misalnya, cetak namanya).</li>
+                        <li>Untuk setiap tetangga dari node saat ini:
+                            <ul>
+                                <li>Jika tetangga tersebut belum dikunjungi:
+                                    <ul>
+                                        <li>Panggil rekursif fungsi DFS untuk tetangga tersebut.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Penting untuk menggunakan set `visited` (atau array boolean) untuk melacak node mana yang sudah dikunjungi agar tidak masuk ke dalam siklus tak terbatas dalam graf.</p>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Graf berikut:</p>
+                    <pre><code>
+    A --- B
+    | \   |
+    |  \  |
+    C --- D
+    |     |
+    E --- F
+                    </code></pre>
+                    <p>Jika dimulai dari Node A (dengan asumsi kunjungan tetangga A: B, C, D):</p>
+                    <ol>
+                        <li>DFS(A). Tandai A dikunjungi. Proses A.</li>
+                        <li>Untuk tetangga A:
+                            <ul>
+                                <li>Coba B: DFS(B). Tandai B dikunjungi. Proses B.</li>
+                                <li>Untuk tetangga B:
+                                    <ul>
+                                        <li>Coba D: DFS(D). Tandai D dikunjungi. Proses D.</li>
+                                        <li>Untuk tetangga D:
+                                            <ul>
+                                                <li>Coba C: DFS(C). Tandai C dikunjungi. Proses C.</li>
+                                                <li>Untuk tetangga C:
+                                                    <ul>
+                                                        <li>Coba E: DFS(E). Tandai E dikunjungi. Proses E.</li>
+                                                        <li>Untuk tetangga E: (C, F - dikunjungi)</li>
+                                                        <li>Kembali ke C.</li>
+                                                    </ul>
+                                                </li>
+                                                <li>Coba F: DFS(F). Tandai F dikunjungi. Proses F.</li>
+                                                <li>Untuk tetangga F: (D, E - dikunjungi)</li>
+                                                <li>Kembali ke D.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Kembali ke B.</li>
+                                    </ul>
+                                </li>
+                                <li>Kembali ke A.</li>
+                            </ul>
+                        </li>
+                        <li>(Semua sudah dikunjungi, selesai)</li>
+                    </ol>
+                    <p>Urutan kunjungan (satu kemungkinan): A -> B -> D -> C -> E -> F</p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION DFS(graph, start_node):
+    visited = new Set() // Atau array boolean
+
+    // Panggil fungsi bantu rekursif
+    DFS_Recursive(graph, start_node, visited)
+
+FUNCTION DFS_Recursive(graph, current_node, visited):
+    visited.ADD(current_node)
+    PRINT current_node // Atau lakukan operasi lain pada node
+
+    FOR EACH neighbor OF current_node:
+        IF neighbor IS NOT IN visited:
+            DFS_Recursive(graph, neighbor, visited)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong>
+                            <ul>
+                                <li>$O(V + E)$, di mana $V$ adalah jumlah simpul (vertices) dan $E$ adalah jumlah sisi (edges). Ini karena setiap simpul dan setiap sisi akan dikunjungi maksimal satu kali.</li>
+                                <li>Mirip dengan BFS, jika graf direpresentasikan dengan matriks adjacency, kompleksitas bisa menjadi $O(V^2)$.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(V)$ untuk menyimpan set `visited` dan untuk stack rekursi (dalam kasus terburuk, stack bisa menyimpan semua simpul).</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>**Pencarian Jalur:** Menemukan jalur antara dua simpul dalam graf (tidak selalu terpendek).</li>
+                        <li>**Mendeteksi Siklus:** Mendeteksi adanya siklus dalam graf.</li>
+                        <li>**Topological Sorting:** Mengurutkan node dalam graf berarah asiklik (DAG).</li>
+                        <li>**Penyelesaian Puzzle & Permainan:** Seperti penyelesaian labirin.</li>
+                        <li>**Web Crawlers:** Dapat digunakan untuk mengindeks halaman web dengan menjelajahi tautan secara mendalam.</li>
+                        <li>**Finding Connected Components:** Menemukan semua komponen terhubung dalam graf.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="kahn-algorithm.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Kahn's Algorithm - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Kahn's Algorithm</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Kahn's Algorithm</h1>
+                <p class="summary-tag-label">Topological Sort</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Kahn's Algorithm adalah algoritma untuk melakukan **Topological Sort** pada sebuah Directed Acyclic Graph (DAG). Topological Sort adalah pengurutan linier dari simpul-simpul (vertices) sedemikian rupa sehingga untuk setiap sisi berarah $U \to V$, simpul $U$ selalu muncul sebelum simpul $V$ dalam urutan tersebut.</p>
+                    <p>Algoritma ini tidak dapat diterapkan pada graf yang memiliki siklus, oleh karena itu hanya berlaku untuk DAG.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Mekanisme</h2>
+                    <p>Kahn's Algorithm menggunakan konsep **"in-degree"** setiap simpul, yaitu jumlah sisi yang masuk ke simpul tersebut. Algoritma ini bekerja secara iteratif dengan mengidentifikasi dan memproses simpul-simpul yang tidak memiliki dependensi (in-degree 0).</p>
+                    <p><strong>Langkah-langkah Algoritma:</strong></p>
+                    <ol>
+                        <li>Hitung in-degree untuk setiap simpul dalam graf.</li>
+                        <li>Inisialisasi sebuah antrian (queue) dan tambahkan semua simpul yang memiliki in-degree 0 ke dalam antrian tersebut.</li>
+                        <li>Inisialisasi daftar kosong untuk menyimpan hasil topological sort.</li>
+                        <li>Selama antrian tidak kosong:
+                            <ul>
+                                <li>Keluarkan (dequeue) sebuah simpul $U$ dari antrian.</li>
+                                <li>Tambahkan $U$ ke daftar hasil topological sort.</li>
+                                <li>Untuk setiap simpul $V$ yang merupakan tetangga dari $U$ (yaitu, ada sisi $U \to V$):
+                                    <ul>
+                                        <li>Kurangi in-degree dari $V$ sebesar 1.</li>
+                                        <li>Jika in-degree dari $V$ menjadi 0, tambahkan $V$ ke antrian.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Setelah antrian kosong, jika jumlah simpul dalam daftar hasil sama dengan total simpul dalam graf, maka hasil tersebut adalah topological sort yang valid. Jika tidak, itu berarti graf memiliki siklus dan topological sort tidak mungkin dilakukan.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Graf berikut (DAG):</p>
+                    <pre><code>
+    1 ---> 2 ---> 3
+    |      ^
+    v      |
+    4 ---> 5
+                    </code></pre>
+                    <p><strong>Langkah 1: Hitung In-Degree Awal:</strong></p>
+                    <ul>
+                        <li>Node 1: in-degree = 0</li>
+                        <li>Node 2: in-degree = 1 (dari 1)</li>
+                        <li>Node 3: in-degree = 1 (dari 2)</li>
+                        <li>Node 4: in-degree = 1 (dari 1)</li>
+                        <li>Node 5: in-degree = 2 (dari 2, 4)</li>
+                    </ul>
+
+                    <p><strong>Langkah 2: Inisialisasi Antrian & Hasil:</strong></p>
+                    <ul>
+                        <li>Queue: [1]</li>
+                        <li>Result: []</li>
+                    </ul>
+
+                    <p><strong>Langkah 4: Proses Iteratif:</strong></p>
+                    <ol>
+                        <li>Keluarkan 1. Result: [1]. Tetangga 1: (2, 4).
+                            <ul>
+                                <li>in-degree(2) menjadi 0. Tambahkan 2 ke Queue.</li>
+                                <li>in-degree(4) menjadi 0. Tambahkan 4 ke Queue.</li>
+                            </ul>
+                            Queue: [2, 4]
+                        </li>
+                        <li>Keluarkan 2. Result: [1, 2]. Tetangga 2: (3, 5).
+                            <ul>
+                                <li>in-degree(3) menjadi 0. Tambahkan 3 ke Queue.</li>
+                                <li>in-degree(5) menjadi 1.</li>
+                            </ul>
+                            Queue: [4, 3]
+                        </li>
+                        <li>Keluarkan 4. Result: [1, 2, 4]. Tetangga 4: (5).
+                            <ul>
+                                <li>in-degree(5) menjadi 0. Tambahkan 5 ke Queue.</li>
+                            </ul>
+                            Queue: [3, 5]
+                        </li>
+                        <li>Keluarkan 3. Result: [1, 2, 4, 3]. Tetangga 3: (tidak ada).
+                            Queue: [5]
+                        </li>
+                        <li>Keluarkan 5. Result: [1, 2, 4, 3, 5]. Tetangga 5: (tidak ada).
+                            Queue: []
+                        </li>
+                    </ol>
+                    <p><strong>Topological Sort: [1, 2, 4, 3, 5]</strong> (Ada kemungkinan urutan lain yang valid, seperti [1, 4, 2, 3, 5] dll.)</p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION KahnTopologicalSort(graph):
+    V = graph.NUM_VERTICES
+    in_degree = CREATE ARRAY of size V, initialized to 0
+
+    // Hitung in-degree untuk setiap simpul
+    FOR EACH vertex U IN graph:
+        FOR EACH neighbor V OF U:
+            in_degree[V] = in_degree[V] + 1
+
+    queue = new Queue()
+    // Tambahkan semua simpul dengan in-degree 0 ke antrian
+    FOR EACH vertex U IN graph:
+        IF in_degree[U] == 0:
+            queue.ENQUEUE(U)
+
+    topological_order = []
+    count_visited_nodes = 0
+
+    WHILE queue IS NOT EMPTY:
+        U = queue.DEQUEUE()
+        topological_order.ADD(U)
+        count_visited_nodes = count_visited_nodes + 1
+
+        FOR EACH neighbor V OF U:
+            in_degree[V] = in_degree[V] - 1
+            IF in_degree[V] == 0:
+                queue.ENQUEUE(V)
+
+    IF count_visited_nodes != V:
+        PRINT "Graf memiliki siklus, topological sort tidak mungkin."
+        RETURN NULL // Atau error
+    ELSE:
+        RETURN topological_order
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong> $O(V + E)$, di mana $V$ adalah jumlah simpul dan $E$ adalah jumlah sisi.
+                            <ul>
+                                <li>Menghitung in-degree: $O(V + E)$.</li>
+                                <li>Memproses simpul dan sisinya: Setiap simpul dan sisi akan dikunjungi dan diproses maksimal satu kali.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(V + E)$ untuk menyimpan graf (adjacency list), in-degree array, dan antrian.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>**Penjadwalan Tugas/Proyek:** Menentukan urutan tugas yang memiliki dependensi. Misalnya, dalam proses kompilasi kode (file A harus dikompilasi sebelum file B yang mengimpornya).</li>
+                        <li>**Course Scheduling:** Menentukan urutan pengambilan mata kuliah di universitas berdasarkan prasyarat.</li>
+                        <li>**Deadlock Detection:** Dalam sistem operasi atau basis data.</li>
+                        <li>**Build Systems:** Mengurutkan modul yang perlu dibangun dalam urutan yang benar.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="dijkstra-algorithm.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

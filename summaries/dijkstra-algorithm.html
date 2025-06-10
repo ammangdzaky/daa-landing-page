@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Dijkstra's Algorithm - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dijkstra's Algorithm</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Dijkstra's Algorithm</h1>
+                <p class="summary-tag-label">Shortest Path Algorithm</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Dijkstra's Algorithm adalah algoritma yang digunakan untuk menemukan **jalur terpendek dari satu simpul sumber (source vertex) ke semua simpul lainnya** dalam graf berbobot (weighted graph). Algoritma ini bekerja dengan mencari jalur dengan bobot total terkecil.</p>
+                    <p>Penting: Dijkstra's Algorithm hanya bekerja dengan sisi yang memiliki **bobot positif**. Jika ada bobot negatif, algoritma seperti Bellman-Ford atau Floyd-Warshall harus digunakan.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Mekanisme</h2>
+                    <p>Dijkstra's Algorithm menggunakan pendekatan greedy. Algoritma ini menjaga sekumpulan simpul yang jarak terpendeknya dari sumber sudah diketahui dan memperbarui jarak ke simpul-simpul yang belum dikunjungi. Ia menggunakan sebuah Priority Queue (min-heap) untuk secara efisien mengambil simpul dengan jarak terpendek yang diketahui berikutnya.</p>
+                    <p><strong>Langkah-langkah Algoritma:</strong></p>
+                    <ol>
+                        <li>Inisialisasi jarak ke simpul sumber menjadi 0, dan jarak ke semua simpul lainnya menjadi tak terbatas (infinity).</li>
+                        <li>Buat set (atau array boolean) `visited` untuk melacak simpul yang sudah dikunjungi, diinisialisasi kosong.</li>
+                        <li>Buat Priority Queue (min-heap) dan masukkan simpul sumber dengan jarak 0.</li>
+                        <li>Selama Priority Queue tidak kosong:
+                            <ul>
+                                <li>Keluarkan simpul $U$ dari Priority Queue yang memiliki jarak terpendek saat ini.</li>
+                                <li>Jika $U$ sudah ada di `visited`, lewati (sudah diproses).</li>
+                                <li>Tambahkan $U$ ke `visited`.</li>
+                                <li>Untuk setiap tetangga $V$ dari $U$:
+                                    <ul>
+                                        <li>Hitung jarak baru ke $V$ melalui $U$: `jarak[U] + bobot_sisi(U, V)`.</li>
+                                        <li>Jika jarak baru ini lebih kecil dari `jarak[V]` yang sudah ada:
+                                            <ul>
+                                                <li>Perbarui `jarak[V]` dengan jarak baru.</li>
+                                                <li>Masukkan $V$ ke Priority Queue dengan jarak baru tersebut.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>Setelah Priority Queue kosong, array `jarak` akan berisi jarak terpendek dari simpul sumber ke semua simpul lainnya.</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Graf berikut (Simpul A-E, dengan bobot sisi):</p>
+                    <pre><code>
+    (0) --> (A) --5--> (C) --1--> (D)
+     |       |          ^          ^
+     10      3          |          |
+     |       |          2          4
+     v       v          |          |
+    (B) -----8---------> (E) ------6-> (F) (tujuan)
+                    </code></pre>
+                    <p>Mari kita temukan jalur terpendek dari A ke semua simpul (dengan asumsi tidak ada F):</p>
+                    <p>A:0, B:inf, C:inf, D:inf, E:inf</p>
+                    <p><strong>Proses:</strong></p>
+                    <ol>
+                        <li>Mulai dari A (jarak 0). PQ: [(0, A)]. Visited: {}.</li>
+                        <li>Keluarkan A. Jarak A=0. Visited: {A}.
+                            <ul>
+                                <li>Tetangga A: B (jarak=0+10=10), C (jarak=0+5=5).</li>
+                            </ul>
+                            Jarak: A:0, B:10, C:5. PQ: [(5,C), (10,B)].
+                        </li>
+                        <li>Keluarkan C (jarak 5). Jarak C=5. Visited: {A, C}.
+                            <ul>
+                                <li>Tetangga C: D (jarak=5+1=6), E (jarak=5+2=7).</li>
+                            </ul>
+                            Jarak: A:0, B:10, C:5, D:6, E:7. PQ: [(6,D), (7,E), (10,B)].
+                        </li>
+                        <li>Keluarkan D (jarak 6). Jarak D=6. Visited: {A, C, D}.
+                            <ul>
+                                <li>Tetangga D: E (jarak=6+4=10). (10 > 7, tidak update E).</li>
+                            </ul>
+                            Jarak: A:0, B:10, C:5, D:6, E:7. PQ: [(7,E), (10,B)].
+                        </li>
+                        <li>Keluarkan E (jarak 7). Jarak E=7. Visited: {A, C, D, E}.
+                            <ul>
+                                <li>Tetangga E: B (jarak=7+8=15). (15 > 10, tidak update B).</li>
+                            </ul>
+                            Jarak: A:0, B:10, C:5, D:6, E:7. PQ: [(10,B)].
+                        </li>
+                        <li>Keluarkan B (jarak 10). Jarak B=10. Visited: {A, C, D, E, B}.
+                            <ul>
+                                <li>Tetangga B: E (jarak=10+8=18). (18 > 7, tidak update E).</li>
+                            </ul>
+                            Jarak: A:0, B:10, C:5, D:6, E:7. PQ: [].
+                        </li>
+                    </ol>
+                    <p><strong>Jarak Terpendek dari A: A:0, B:10, C:5, D:6, E:7</strong></p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION Dijkstra(graph, start_node):
+    distances = CREATE MAP/ARRAY, initialized to infinity for all nodes
+    distances[start_node] = 0
+
+    priority_queue = new MinHeap() // Mengurutkan berdasarkan jarak
+    priority_queue.INSERT(start_node, 0) // (node, distance)
+
+    visited = new Set()
+
+    WHILE priority_queue IS NOT EMPTY:
+        // Ambil node dengan jarak terpendek dari PQ
+        current_distance, current_node = priority_queue.EXTRACT_MIN()
+
+        IF current_node IS IN visited:
+            CONTINUE // Lewati jika sudah diproses
+
+        visited.ADD(current_node)
+
+        // Jelajahi tetangga
+        FOR EACH neighbor_node, weight OF current_node.ADJACENT_NODES:
+            // Hitung jarak baru ke tetangga ini melalui current_node
+            new_distance = current_distance + weight
+
+            // Jika jarak baru lebih pendek dari yang sudah ada
+            IF new_distance < distances[neighbor_node]:
+                distances[neighbor_node] = new_distance
+                priority_queue.INSERT(neighbor_node, new_distance)
+
+    RETURN distances // Peta jarak terpendek dari start_node ke semua node
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong>
+                            <ul>
+                                <li>Menggunakan Priority Queue (Min-Heap): $O(E \log V)$ atau $O(E + V \log V)$ tergantung implementasi heap.
+                                    <ul>
+                                        <li>$E$ adalah jumlah sisi (edges), $V$ adalah jumlah simpul (vertices).</li>
+                                        <li>Setiap sisi akan diproses sekali ($E$ kali), dan setiap operasi pada heap (insert/extract_min) membutuhkan $O(\log V)$ waktu.</li>
+                                    </ul>
+                                </li>
+                                <li>Menggunakan Array (tanpa Priority Queue, scan linier): $O(V^2)$ pada graf padat.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(V + E)$ untuk menyimpan graf (adjacency list), array jarak, dan priority queue.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>**Sistem Peta & GPS:** Menemukan rute terpendek antar lokasi (misalnya, Google Maps).</li>
+                        <li>**Routing Jaringan:** Menemukan jalur data terpendek dalam jaringan komputer.</li>
+                        <li>**Transportasi:** Optimasi rute pengiriman barang.</li>
+                        <li>**Game Development:** Pathfinding untuk karakter game.</li>
+                        <li>**Analisis Biologi Komputasi:** Menemukan jalur terpendek dalam jaringan biokimia.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="activity-selection.html" class="btn btn-primary">Kembali ke Awal <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

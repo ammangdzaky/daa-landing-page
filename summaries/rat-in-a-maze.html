@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Rat in a Maze - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Rat in a Maze</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Rat in a Maze</h1>
+                <p class="summary-tag-label">Backtracking Algorithm</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Rat in a Maze (Tikus dalam Labirin) adalah masalah klasik yang menggambarkan pencarian jalur dari titik awal ke titik tujuan dalam sebuah labirin atau matriks. Matriks tersebut biasanya terdiri dari sel-sel yang mewakili jalur yang bisa dilalui (misalnya, 1) dan rintangan yang tidak bisa dilalui (misalnya, 0).</p>
+                    <p>Tujuannya adalah untuk menemukan satu atau semua kemungkinan jalur yang dapat dilewati tikus dari sel awal (biasanya [0][0]) ke sel tujuan (biasanya [N-1][N-1]). Masalah ini seringkali diselesaikan menggunakan pendekatan **Backtracking**.</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Pendekatan Backtracking</h2>
+                    <p>Algoritma Backtracking mengeksplorasi semua kemungkinan jalur secara rekursif. Pada setiap langkah, tikus mencoba bergerak ke salah satu dari empat arah (atas, bawah, kiri, kanan). Jika langkah tersebut valid (tidak keluar batas, bukan rintangan, dan belum pernah dikunjungi di jalur ini), maka tikus mencoba langkah tersebut dan menandainya sebagai bagian dari jalur saat ini. Jika langkah tersebut tidak membawa ke solusi atau buntu, tikus "mundur" (backtrack) dan mencoba arah lain.</p>
+                    <p><strong>Langkah-langkah Algoritma Backtracking:</strong></p>
+                    <ol>
+                        <li>Mulai dari posisi awal tikus (biasanya [0][0]).</li>
+                        <li>Buat matriks solusi yang sama ukurannya dengan labirin, diinisialisasi dengan 0. Ketika tikus melewati sebuah sel, tandai sel tersebut dengan 1 di matriks solusi.</li>
+                        <li>Fungsi rekursif `solveMaze(x, y)` dipanggil untuk posisi saat ini `(x, y)`.</li>
+                        <li>Kasus Dasar:
+                            <ul>
+                                <li>Jika posisi `(x, y)` adalah posisi tujuan (exit), berarti jalur ditemukan. Tandai sel ini di matriks solusi dan return `true`.</li>
+                            </ul>
+                        </li>
+                        <li>Langkah Rekursif:
+                            <ul>
+                                <li>Jika posisi `(x, y)` valid (dalam batas, bukan rintangan, belum dikunjungi di jalur saat ini):
+                                    <ol type="a">
+                                        <li>Tandai `(x, y)` di matriks solusi sebagai bagian dari jalur (misalnya, `solution[x][y] = 1`).</li>
+                                        <li>Coba bergerak ke semua kemungkinan arah (misal: Bawah, Kanan, Atas, Kiri) secara rekursif:
+                                            <ul>
+                                                <li>Jika `solveMaze(x+1, y)` berhasil, return `true`.</li>
+                                                <li>Jika `solveMaze(x, y+1)` berhasil, return `true`.</li>
+                                                <li>... dan seterusnya untuk arah lain.</li>
+                                            </ul>
+                                        </li>
+                                        <li>Jika tidak ada arah yang berhasil (tikus buntu), maka "mundur" (backtrack). Hapus tanda `(x, y)` dari matriks solusi (misalnya, `solution[x][y] = 0`) dan return `false`.</li>
+                                    </ol>
+                                </li>
+                                <li>Jika posisi `(x, y)` tidak valid (rintangan, di luar batas, atau sudah dikunjungi di jalur ini), return `false`.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Misalkan labirin $4 \times 4$ ($0$ = rintangan, $1$ = jalan):</p>
+                    <pre><code>
+Maze:
+[[1, 0, 0, 0],
+ [1, 1, 0, 1],
+ [0, 1, 0, 0],
+ [1, 1, 1, 1]]
+
+Start: (0,0), End: (3,3)
+                    </code></pre>
+                    <p>Salah satu jalur solusi (1 menandakan jalur tikus):</p>
+                    <pre><code>
+Solution Path:
+[[1, 0, 0, 0],
+ [1, 1, 0, 0],
+ [0, 1, 0, 0],
+ [0, 1, 1, 1]]
+                    </code></pre>
+                    <p>Visualisasi akan menunjukkan tikus bergerak dari (0,0) ke (1,0), (1,1), (2,1), (3,1), (3,2), (3,3).</p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION solveMaze(maze):
+    N = maze.ROWS
+    solution_path = CREATE N x N array, filled with 0s
+
+    IF findPath(maze, 0, 0, solution_path, N) == FALSE:
+        PRINT "Tidak ada jalur yang ditemukan"
+        RETURN FALSE
+
+    PRINT "Jalur ditemukan:"
+    PRINT solution_path // Cetak matriks solusi
+    RETURN TRUE
+
+FUNCTION findPath(maze, x, y, solution_path, N):
+    // Jika mencapai tujuan
+    IF x == N-1 AND y == N-1 AND maze[x][y] == 1:
+        solution_path[x][y] = 1
+        RETURN TRUE
+
+    // Periksa apakah (x, y) valid dan belum dikunjungi di jalur ini
+    IF x >= 0 AND x < N AND y >= 0 AND y < N AND maze[x][y] == 1 AND solution_path[x][y] == 0:
+        solution_path[x][y] = 1 // Tandai sebagai bagian dari jalur
+
+        // Coba bergerak ke bawah
+        IF findPath(maze, x + 1, y, solution_path, N) == TRUE:
+            RETURN TRUE
+
+        // Coba bergerak ke kanan
+        IF findPath(maze, x, y + 1, solution_path, N) == TRUE:
+            RETURN TRUE
+        
+        // Coba bergerak ke atas (opsional, tergantung arah yang diizinkan)
+        IF findPath(maze, x - 1, y, solution_path, N) == TRUE:
+            RETURN TRUE
+
+        // Coba bergerak ke kiri (opsional, tergantung arah yang diizinkan)
+        IF findPath(maze, x, y - 1, solution_path, N) == TRUE:
+            RETURN TRUE
+
+        // Jika tidak ada arah yang berhasil, backtrack (hapus dari jalur)
+        solution_path[x][y] = 0
+        RETURN FALSE
+
+    RETURN FALSE // Posisi tidak valid
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong> $O(4^{N \times N})$ pada kasus terburuk (tanpa pruning, jika bisa mencoba 4 arah di setiap sel), karena setiap sel bisa dikunjungi dan ada 4 pilihan arah. Namun, dengan pruning (tidak mengunjungi sel yang sudah dikunjungi atau rintangan), kompleksitasnya jauh lebih baik, tetapi masih eksponensial. Lebih tepatnya $O(2^{N \times N})$ jika hanya bisa 2 arah (misal: kanan dan bawah) atau $O(\text{jumlah_sel} \times \text{jumlah_arah})$ yang dieksplorasi.</li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(N^2)$ untuk menyimpan matriks labirin dan matriks solusi. Stack rekursi juga bisa mencapai $O(N^2)$ pada kasus terburuk (untuk jalur terpanjang).</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>Pencarian jalur dalam permainan video (pathfinding).</li>
+                        <li>Robotika untuk navigasi otonom.</li>
+                        <li>Penyelesaian Sudoku dan puzzle berbasis grid lainnya.</li>
+                        <li>Permasalahan routing di jaringan komputer.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="bfs.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

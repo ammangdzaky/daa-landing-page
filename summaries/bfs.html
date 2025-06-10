@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Breadth-First Search (BFS) - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Breadth-First Search (BFS)</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Breadth-First Search (BFS)</h1>
+                <p class="summary-tag-label">Graph Traversal</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Breadth-First Search (BFS) adalah algoritma untuk melintasi atau mencari pohon atau struktur data graf. Algoritma ini memulai dari node (simpul) akar (atau node awal yang dipilih) dan mengeksplorasi semua node tetangga pada kedalaman saat ini sebelum bergerak ke node pada tingkat kedalaman berikutnya. Dengan kata lain, BFS mengunjungi semua node pada satu "level" sebelum melanjutkan ke "level" berikutnya.</p>
+                    <p>BFS menjamin menemukan jalur terpendek dalam graf yang tidak berbobot (unweighted graph).</p>
+                </section>
+
+                <section>
+                    <h2>2. Konsep Dasar & Mekanisme</h2>
+                    <p>BFS menggunakan struktur data antrian (queue) untuk menyimpan node-node yang akan dikunjungi. Ini memastikan bahwa node dikunjungi secara level demi level.</p>
+                    <p><strong>Langkah-langkah Algoritma:</strong></p>
+                    <ol>
+                        <li>Mulai dari node awal (sumber), tandai node tersebut sebagai "dikunjungi" dan tambahkan ke antrian.</li>
+                        <li>Selama antrian tidak kosong:
+                            <ul>
+                                <li>Keluarkan (dequeue) sebuah node dari antrian.</li>
+                                <li>Proses node yang dikeluarkan tersebut (misalnya, cetak namanya).</li>
+                                <li>Untuk setiap tetangga dari node yang dikeluarkan:
+                                    <ul>
+                                        <li>Jika tetangga tersebut belum dikunjungi:
+                                            <ul>
+                                                <li>Tandai tetangga sebagai "dikunjungi".</li>
+                                                <li>Tambahkan tetangga ke antrian.</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <p>Penting untuk menggunakan set `visited` (atau array boolean) untuk melacak node mana yang sudah dikunjungi agar tidak masuk ke dalam siklus tak terbatas dalam graf.</p>
+                </section>
+
+                <section>
+                    <h2>3. Contoh Ilustrasi</h2>
+                    <p>Graf berikut:</p>
+                    <pre><code>
+    A --- B
+    | \   |
+    |  \  |
+    C --- D
+    |     |
+    E --- F
+                    </code></pre>
+                    <p>Jika dimulai dari Node A:</p>
+                    <ol>
+                        <li>Antrian: [A], Dikunjungi: {A}</li>
+                        <li>Keluarkan A. Proses A. Tetangga A: B, C, D. Tambahkan B, C, D ke antrian.</li>
+                            <li>Antrian: [B, C, D], Dikunjungi: {A, B, C, D}</li>
+                        <li>Keluarkan B. Proses B. Tetangga B: A (dikunjungi), D (dikunjungi). Tidak ada tetangga baru.</li>
+                            <li>Antrian: [C, D], Dikunjungi: {A, B, C, D}</li>
+                        <li>Keluarkan C. Proses C. Tetangga C: A (dikunjungi), D (dikunjungi), E. Tambahkan E ke antrian.</li>
+                            <li>Antrian: [D, E], Dikunjungi: {A, B, C, D, E}</li>
+                        <li>Keluarkan D. Proses D. Tetangga D: A, B, C (dikunjungi), F. Tambahkan F ke antrian.</li>
+                            <li>Antrian: [E, F], Dikunjungi: {A, B, C, D, E, F}</li>
+                        <li>Keluarkan E. Proses E. Tetangga E: C (dikunjungi), F (dikunjungi). Tidak ada tetangga baru.</li>
+                            <li>Antrian: [F], Dikunjungi: {A, B, C, D, E, F}</li>
+                        <li>Keluarkan F. Proses F. Tetangga F: D, E (dikunjungi). Tidak ada tetangga baru.</li>
+                            <li>Antrian: [], Dikunjungi: {A, B, C, D, E, F}</li>
+                    </ol>
+                    <p>Urutan kunjungan: A -> B -> C -> D -> E -> F</p>
+                </section>
+
+                <section>
+                    <h2>4. Pseudocode Algoritma</h2>
+                    <pre><code class="language-pseudocode">
+FUNCTION BFS(graph, start_node):
+    queue = new Queue()
+    visited = new Set() // Atau array boolean
+
+    queue.ENQUEUE(start_node)
+    visited.ADD(start_node)
+
+    WHILE queue IS NOT EMPTY:
+        current_node = queue.DEQUEUE()
+        PRINT current_node // Atau lakukan operasi lain pada node
+
+        FOR EACH neighbor OF current_node:
+            IF neighbor IS NOT IN visited:
+                visited.ADD(neighbor)
+                queue.ENQUEUE(neighbor)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>5. Kompleksitas Waktu & Ruang</h2>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu:</strong>
+                            <ul>
+                                <li>$O(V + E)$, di mana $V$ adalah jumlah simpul (vertices) dan $E$ adalah jumlah sisi (edges). Ini karena setiap simpul dan setiap sisi akan dikunjungi maksimal satu kali.</li>
+                                <li>Jika graf direpresentasikan dengan matriks adjacency, kompleksitas bisa menjadi $O(V^2)$.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Kompleksitas Ruang:</strong> $O(V)$ untuk menyimpan antrian dan set `visited` (dalam kasus terburuk, semua simpul mungkin berada di antrian).</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>6. Aplikasi</h2>
+                    <ul>
+                        <li>**Pencarian Jalur Terpendek:** Menemukan jalur terpendek dalam graf tak berbobot.</li>
+                        <li>**Web Crawlers:** Digunakan oleh mesin pencari untuk mengindeks halaman web.</li>
+                        <li>**Sistem GPS:** Menemukan rute terpendek antar lokasi.</li>
+                        <li>**Networking:** Digunakan untuk menemukan broadcast path dalam jaringan.</li>
+                        <li>**Social Networking:** Menemukan semua orang dalam 'N' tingkat dari seseorang.</li>
+                        <li>**Garbage Collection:** Dalam bahasa pemrograman tertentu.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="dfs.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
