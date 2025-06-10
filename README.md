@@ -48,7 +48,7 @@ Untuk menjalankan proyek ini di komputer Anda:
     ```bash
     git clone [https://github.com/ammangdzaky/daa-landing-page.git](https://github.com/ammangdzaky/daa-landing-page.git)
     ```
-    *(Catatan: `https://github.com/ammangdzaky/daa-landing-page.git` adalah contoh. Ganti dengan link repositori Anda setelah di-upload ke GitHub.)*
+    
 2.  **Buka Folder Proyek:** Navigasikan ke dalam folder `daa-landing-page` (atau nama folder proyek Anda).
 3.  **Buka `index.html`:** Cukup buka file `index.html` menggunakan browser web favorit Anda (klik dua kali file-nya).
 
