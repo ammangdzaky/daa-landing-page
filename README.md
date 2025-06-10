@@ -9,23 +9,34 @@ Sebuah landing page interaktif yang berisi rangkuman komprehensif materi perkuli
 - **Rangkuman Lengkap:** Ringkasan detail untuk setiap topik algoritma.
 - **Desain Modern & Responsif:** Tampilan yang menarik dan adaptif di berbagai ukuran layar (desktop, tablet, mobile).
 - **Navigasi Berbasis Kategori:** Mudah menjelajahi materi berdasarkan kategori (saat ini fokus pada DAA).
-- **Pseudocode & Contoh:** Dilengkapi dengan pseudocode dan contoh ilustrasi untuk pemahaman yang lebih baik (meskipun ilustrasi visual tidak disertakan, penjelasannya tetap ada).
+- **Pseudocode & Contoh:** Dilengkapi dengan pseudocode dan contoh untuk pemahaman yang lebih baik.
 - **Personal Branding:** Mencerminkan profil dan minat saya sebagai mahasiswa.
+
+---
 
 ## Materi yang Dicakup
 
-Proyek ini mencakup rangkuman untuk algoritma-algoritma berikut:
+Proyek ini mencakup rangkuman untuk algoritma-algoritma dan konsep dasar berikut, dibagi berdasarkan periode perkuliahan:
 
-- Activity Selection Problem
-- Fractional Knapsack
-- Huffman Coding
-- N-Queens Problem
-- Subset Sum Problem
-- Rat in a Maze
-- Breadth-First Search (BFS)
-- Depth-First Search (DFS)
-- Kahn's Algorithm (Topological Sort)
-- Dijkstra's Algorithm
+### Materi Sebelum MID
+
+1.  **Dasar-Dasar Algoritma**
+2.  **Struktur Data Dasar**
+3.  **Divide and Conquer**
+4.  **Dynamic Programming**
+
+### Materi Setelah MID
+
+5.  Activity Selection Problem
+6.  Fractional Knapsack
+7.  Huffman Coding
+8.  N-Queens Problem
+9.  Subset Sum Problem
+10. Rat in a Maze
+11. Breadth-First Search (BFS)
+12. Depth-First Search (DFS)
+13. Kahn's Algorithm (Topological Sort)
+14. Dijkstra's Algorithm
 
 ---
 
@@ -37,7 +48,7 @@ Untuk menjalankan proyek ini di komputer Anda:
     ```bash
     git clone [https://github.com/ammangdzaky/daa-landing-page.git](https://github.com/ammangdzaky/daa-landing-page.git)
     ```
-    
+    *(Catatan: `https://github.com/ammangdzaky/daa-landing-page.git` adalah contoh. Ganti dengan link repositori Anda setelah di-upload ke GitHub.)*
 2.  **Buka Folder Proyek:** Navigasikan ke dalam folder `daa-landing-page` (atau nama folder proyek Anda).
 3.  **Buka `index.html`:** Cukup buka file `index.html` menggunakan browser web favorit Anda (klik dua kali file-nya).
 
@@ -50,7 +61,7 @@ Tidak ada dependensi eksternal yang perlu diinstal (selain browser web modern).
 Anda dapat melihat landing page ini secara langsung di:
 
 **[https://ammangdzaky.github.io/daa-landing-page/](https://ammangdzaky.github.io/daa-landing-page/)**
-*(Catatan: Link ini akan aktif setelah Anda mengunggah proyek ke GitHub dan mengaktifkan GitHub Pages. Ganti `ammangdzaky` dengan username GitHub Anda dan `daa-landing-page` dengan nama repository Anda.)*
+
 
 ---
 
@@ -61,6 +72,7 @@ Mahasiswa Sistem Informasi, Fakultas MIPA, Universitas Hasanuddin.
 Tertarik pada pengembangan web, coding, dan algoritma.
 
 - GitHub: [github.com/ammangdzaky](https://github.com/ammangdzaky)
+
 
 ---
 
