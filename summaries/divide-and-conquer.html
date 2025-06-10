@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Divide and Conquer - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Divide and Conquer</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Divide and Conquer</h1>
+                <p class="summary-tag-label">Algorithmic Paradigms</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Divide and Conquer (D&C) adalah sebuah paradigma desain algoritma yang kuat untuk memecahkan masalah dengan tiga langkah utama: membagi, menaklukkan, dan menggabungkan. Paradigma ini sering digunakan untuk masalah yang dapat dipecah menjadi sub-masalah yang lebih kecil, independen, dan mirip dengan masalah aslinya.</p>
+                </section>
+
+                <section>
+                    <h2>2. Tiga Langkah Dasar</h2>
+                    <ol>
+                        <li><strong>Divide (Bagi):</strong>
+                            <p>Pecah masalah besar menjadi dua atau lebih sub-masalah yang lebih kecil. Sub-masalah ini idealnya memiliki tipe yang sama dengan masalah aslinya, namun dalam skala yang lebih kecil.</p>
+                        </li>
+                        <li><strong>Conquer (Taklukkan):</strong>
+                            <p>Selesaikan sub-masalah secara rekursif. Jika sub-masalah cukup kecil (kasus dasar), selesaikan secara langsung.</p>
+                        </li>
+                        <li><strong>Combine (Gabungkan):</strong>
+                            <p>Gabungkan solusi dari sub-masalah yang ditaklukkan untuk mendapatkan solusi dari masalah asli.</p>
+                        </li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>3. Kapan Menggunakan Divide and Conquer?</h2>
+                    <ul>
+                        <li>Ketika masalah dapat dipecah menjadi sub-masalah yang independen dan identik (hanya berbeda ukuran).</li>
+                        <li>Solusi dari sub-masalah dapat digabungkan dengan mudah.</li>
+                        <li>Dapat menghasilkan algoritma yang lebih efisien dibandingkan metode brute-force.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Contoh Algoritma Divide and Conquer</h2>
+                    <h3>a. Merge Sort</h3>
+                    <ul>
+                        <li><strong>Divide:</strong> Membagi array menjadi dua sub-array sampai setiap sub-array hanya memiliki satu elemen.</li>
+                        <li><strong>Conquer:</strong> Mengurutkan setiap sub-array (satu elemen sudah terurut).</li>
+                        <li><strong>Combine:</strong> Menggabungkan (merge) dua sub-array yang terurut menjadi satu array terurut yang lebih besar.</li>
+                        <li><strong>Kompleksitas Waktu:</strong> $O(N \log N)$</li>
+                    </ul>
+                    <h3>b. Quick Sort</h3>
+                    <ul>
+                        <li><strong>Divide:</strong> Memilih sebuah elemen sebagai 'pivot' dan mempartisi array di sekitar pivot, sehingga semua elemen yang lebih kecil dari pivot berada di kirinya, dan yang lebih besar di kanannya.</li>
+                        <li><strong>Conquer:</strong> Secara rekursif mengurutkan sub-array di kiri dan kanan pivot.</li>
+                        <li><strong>Combine:</strong> Tidak ada langkah combine terpisah karena array sudah terurut setelah partisi dan rekursi selesai.</li>
+                        <li><strong>Kompleksitas Waktu:</strong> $O(N \log N)$ rata-rata, $O(N^2)$ terburuk.</li>
+                    </ul>
+                    <h3>c. Binary Search (Pencarian Biner)</h3>
+                    <ul>
+                        <li><strong>Divide:</strong> Membagi ruang pencarian menjadi dua bagian berdasarkan nilai tengah.</li>
+                        <li><strong>Conquer:</strong> Mencari elemen di salah satu bagian (kiri atau kanan).</li>
+                        <li><strong>Combine:</strong> Tidak ada, karena masalah direduksi menjadi sub-masalah yang lebih kecil sampai ditemukan atau tidak ada lagi.</li>
+                        <li><strong>Kompleksitas Waktu:</strong> $O(\log N)$</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>5. Keuntungan & Kerugian</h2>
+                    <h3>Keuntungan:</h3>
+                    <ul>
+                        <li>Seringkali menghasilkan algoritma yang efisien.</li>
+                        <li>Sesuai untuk pemrograman paralel karena sub-masalah bisa diselesaikan secara independen.</li>
+                        <li>Memanfaatkan memori cache secara efisien (cache-friendly).</li>
+                    </ul>
+                    <h3>Kerugian:</h3>
+                    <ul>
+                        <li>Overhead rekursi (penggunaan memori untuk stack panggilan).</li>
+                        <li>Kadang-kadang lebih sulit untuk dipahami dan diimplementasikan dibandingkan pendekatan iteratif.</li>
+                        <li>Tidak cocok jika sub-masalah sangat tumpang tindih.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="dynamic-programming.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

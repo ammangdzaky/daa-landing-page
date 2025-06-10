@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Dasar-Dasar Algoritma - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dasar-Dasar Algoritma</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Dasar-Dasar Algoritma</h1>
+                <p class="summary-tag-label">Pendahuluan</p>
+
+                <section>
+                    <h2>1. Pengertian Algoritma</h2>
+                    <p>Algoritma adalah serangkaian instruksi atau langkah-langkah yang terstruktur dan terbatas, digunakan untuk menyelesaikan suatu masalah atau mencapai tujuan tertentu. Algoritma harus bersifat jelas (unambiguous), memiliki masukan (input) dan keluaran (output) yang terdefinisi, efektif (setiap langkah bisa dieksekusi), dan berakhir (finite) dalam waktu terbatas.</p>
+                    <p>Dalam ilmu komputer, algoritma adalah fondasi dari setiap program dan sistem perangkat lunak.</p>
+                </section>
+
+                <section>
+                    <h2>2. Karakteristik Algoritma</h2>
+                    <ul>
+                        <li><strong>Finiteness (Keterbatasan):</strong> Algoritma harus berakhir setelah sejumlah langkah terbatas.</li>
+                        <li><strong>Definiteness (Kepastian):</strong> Setiap langkah dalam algoritma harus jelas dan tidak ambigu.</li>
+                        <li><strong>Input (Masukan):</strong> Algoritma memiliki nol atau lebih masukan yang diberikan dari luar.</li>
+                        <li><strong>Output (Keluaran):</strong> Algoritma memiliki satu atau lebih keluaran yang dihasilkan.</li>
+                        <li><strong>Effectiveness (Efektivitas):</strong> Setiap operasi harus cukup dasar sehingga dapat dilakukan secara akurat dan dalam waktu terbatas.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>3. Representasi Algoritma</h2>
+                    <p>Algoritma dapat direpresentasikan dalam berbagai cara:</p>
+                    <ul>
+                        <li><strong>Bahasa Alami:</strong> Menggunakan bahasa manusia untuk menjelaskan langkah-langkah. (Cenderung ambigu)</li>
+                        <li><strong>Pseudocode:</strong> Deskripsi algoritma yang menyerupai bahasa pemrograman tetapi tidak terikat pada sintaks tertentu. Lebih terstruktur dari bahasa alami.</li>
+                        <li><strong>Flowchart:</strong> Representasi grafis dari algoritma menggunakan simbol-simbol standar untuk menunjukkan alur logika.</li>
+                        <li><strong>Bahasa Pemrograman:</strong> Implementasi algoritma langsung dalam kode yang dapat dieksekusi oleh komputer.</li>
+                    </ul>
+                    <h3>Contoh Pseudocode (Mencari Nilai Terbesar)</h3>
+                    <pre><code class="language-pseudocode">
+FUNCTION FindMax(array):
+    IF array IS EMPTY:
+        RETURN "Array kosong"
+
+    max_value = array[0] // Asumsi elemen pertama adalah yang terbesar
+
+    FOR i FROM 1 TO array.LENGTH - 1:
+        IF array[i] > max_value:
+            max_value = array[i]
+
+    RETURN max_value
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h2>4. Analisis Algoritma (Kompleksitas)</h2>
+                    <p>Analisis algoritma adalah proses untuk menentukan sumber daya (waktu dan ruang/memori) yang dibutuhkan oleh algoritma. Ini membantu kita membandingkan efisiensi algoritma yang berbeda untuk masalah yang sama.</p>
+                    <ul>
+                        <li><strong>Kompleksitas Waktu (Time Complexity):</strong> Mengukur jumlah operasi dasar yang dilakukan algoritma sebagai fungsi dari ukuran input. Biasanya dinyatakan menggunakan Notasi Big O (O-notation), seperti $O(1)$ (konstan), $O(\log N)$ (logaritmik), $O(N)$ (linier), $O(N \log N)$, $O(N^2)$ (kuadratik), $O(2^N)$ (eksponensial).</li>
+                        <li><strong>Kompleksitas Ruang (Space Complexity):</strong> Mengukur jumlah memori yang digunakan algoritma sebagai fungsi dari ukuran input.</li>
+                    </ul>
+                    <p>Tujuan analisis adalah memilih algoritma yang paling efisien, terutama untuk input berukuran besar.</p>
+                </section>
+
+                <section>
+                    <h2>5. Pentingnya Algoritma</h2>
+                    <ul>
+                        <li>**Efisiensi:** Memastikan program berjalan cepat dan hemat sumber daya.</li>
+                        <li>**Skalabilitas:** Memastikan program tetap berfungsi dengan baik saat ukuran data meningkat.</li>
+                        <li>**Solusi Masalah:** Menyediakan kerangka kerja sistematis untuk memecahkan masalah kompleks.</li>
+                        <li>**Dasar Pemrograman:** Pemahaman algoritma adalah dasar untuk menjadi programmer yang baik.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="struktur-data-dasar.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

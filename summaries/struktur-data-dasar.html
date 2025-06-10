@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Struktur Data Dasar - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Struktur Data Dasar</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Struktur Data Dasar</h1>
+                <p class="summary-tag-label">Pendahuluan</p>
+
+                <section>
+                    <h2>1. Pengertian Struktur Data</h2>
+                    <p>Struktur data adalah cara terorganisir untuk menyimpan dan mengelola data dalam komputer sehingga data tersebut dapat diakses dan dimodifikasi secara efisien. Pilihan struktur data yang tepat sangat mempengaruhi efisiensi (waktu dan ruang) dari algoritma yang beroperasi pada data tersebut.</p>
+                    <p>Struktur data dan algoritma adalah dua pilar fundamental dalam ilmu komputer; keduanya saling melengkapi untuk membangun solusi yang efektif.</p>
+                </section>
+
+                <section>
+                    <h2>2. Mengapa Struktur Data Penting?</h2>
+                    <ul>
+                        <li><strong>Efisiensi:</strong> Memungkinkan operasi seperti pencarian, penyisipan, dan penghapusan data dilakukan dengan cepat.</li>
+                        <li><strong>Organisasi Data:</strong> Menyediakan cara logis untuk menyusun data yang kompleks.</li>
+                        <li><strong>Manajemen Memori:</strong> Membantu dalam penggunaan memori yang efisien.</li>
+                        <li><strong>Dasar Algoritma:</strong> Banyak algoritma yang dirancang untuk bekerja dengan struktur data tertentu.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>3. Jenis-Jenis Struktur Data Dasar</h2>
+                    <p>Berikut adalah beberapa struktur data dasar yang sering digunakan:</p>
+
+                    <h3>a. Array (Larai)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Kumpulan elemen data yang disimpan dalam lokasi memori yang berdekatan. Setiap elemen diakses melalui indeks.</li>
+                        <li><strong>Karakteristik:</strong> Ukuran tetap (umumnya), akses elemen $O(1)$ (konstan) berdasarkan indeks, penyisipan/penghapusan di tengah array bisa lambat ($O(N)$).</li>
+                        <li><strong>Aplikasi:</strong> Matriks, menyimpan data berurutan.</li>
+                    </ul>
+
+                    <h3>b. Linked List (Daftar Berantai)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Kumpulan node, di mana setiap node berisi data dan pointer (referensi) ke node berikutnya dalam urutan.</li>
+                        <li><strong>Karakteristik:</strong> Ukuran dinamis, penyisipan/penghapusan $O(1)$ (jika posisi diketahui), akses elemen $O(N)$ (linear).</li>
+                        <li><strong>Jenis:</strong> Singly Linked List, Doubly Linked List, Circular Linked List.</li>
+                        <li><strong>Aplikasi:</strong> Implementasi Stack/Queue, manajemen memori.</li>
+                    </ul>
+
+                    <h3>c. Stack (Tumpukan)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Struktur data yang mengikuti prinsip LIFO (Last In, First Out). Operasi utama: Push (tambah elemen ke atas), Pop (hapus elemen dari atas), Peek (lihat elemen teratas).</li>
+                        <li><strong>Karakteristik:</strong> Operasi Push/Pop $O(1)$.</li>
+                        <li><strong>Aplikasi:</strong> Undo/Redo di aplikasi, manajemen panggilan fungsi (call stack), evaluasi ekspresi.</li>
+                    </ul>
+
+                    <h3>d. Queue (Antrian)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Struktur data yang mengikuti prinsip FIFO (First In, First Out). Operasi utama: Enqueue (tambah elemen ke belakang), Dequeue (hapus elemen dari depan).</li>
+                        <li><strong>Karakteristik:</strong> Operasi Enqueue/Dequeue $O(1)$.</li>
+                        <li><strong>Aplikasi:</strong> Penjadwalan tugas, buffer, simulasi.</li>
+                    </ul>
+
+                    <h3>e. Tree (Pohon)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Struktur data non-linear hierarkis yang terdiri dari node dan edge (sisi). Ada node akar, node anak, dan node daun.</li>
+                        <li><strong>Karakteristik:</strong> Digunakan untuk merepresentasikan data hierarkis.</li>
+                        <li><strong>Jenis:</strong> Binary Tree, Binary Search Tree (BST), AVL Tree, Red-Black Tree.</li>
+                        <li><strong>Aplikasi:</strong> Sistem file, basis data (indeks B-tree), parsing ekspresi.</li>
+                    </ul>
+                    
+                    <h3>f. Graph (Graf)</h3>
+                    <ul>
+                        <li><strong>Konsep:</strong> Kumpulan simpul (vertices) dan sisi (edges) yang menghubungkan pasangan simpul. Dapat berarah (directed) atau tidak berarah (undirected), dan berbobot (weighted) atau tidak.</li>
+                        <li><strong>Karakteristik:</strong> Merepresentasikan hubungan kompleks antar entitas.</li>
+                        <li><strong>Representasi:</strong> Adjacency Matrix, Adjacency List.</li>
+                        <li><strong>Aplikasi:</strong> Jaringan sosial, sistem GPS, jaringan komputer.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Hubungan dengan Algoritma</h2>
+                    <p>Struktur data yang berbeda mendukung operasi yang berbeda secara efisien. Memilih struktur data yang tepat adalah langkah pertama dalam merancang algoritma yang efisien. Misalnya:</p>
+                    <ul>
+                        <li>Algoritma pencarian jalur seperti BFS/DFS sangat bergantung pada representasi graf (adjacency list/matrix).</li>
+                        <li>Algoritma pengurutan seperti Merge Sort dan Quick Sort sering beroperasi pada array.</li>
+                        <li>Algoritma prioritas (seperti Dijkstra) menggunakan Priority Queue (sering diimplementasikan dengan heap, sejenis tree).</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h2>5. Kompleksitas Waktu Operasi Dasar</h2>
+                    <p>Berikut adalah perbandingan singkat kompleksitas waktu untuk operasi umum pada beberapa struktur data dasar (kasus rata-rata):</p>
+                    <pre><code class="language-plaintext">
+Struktur Data | Akses (Indeks/Posisi) | Pencarian | Penyisipan | Penghapusan
+-----------------------------------------------------------------------------
+Array         | O(1)                  | O(N)      | O(N)       | O(N)
+Linked List   | O(N)                  | O(N)      | O(1)       | O(1)
+Stack         | O(1)                  | O(N)      | O(1)       | O(1)
+Queue         | O(1) (depan/belakang) | O(N)      | O(1)       | O(1)
+BST (Avg)     | O(log N)              | O(log N)  | O(log N)   | O(log N)
+                    </code></pre>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="divide-and-conquer.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

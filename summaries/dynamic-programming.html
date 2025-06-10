@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangkuman: Dynamic Programming - DZAKY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/summary-style.css"> </head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="../index.html" class="logo">DZAKY</a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="../index.html#home">Home</a></li>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#materials">Materi</a></li>
+                </ul>
+                <button class="menu-toggle" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="summary-page-content section-padding">
+        <div class="container">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="../index.html#materials">Materi DAA</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Dynamic Programming</li>
+                </ol>
+            </nav>
+
+            <article class="summary-article">
+                <h1>Rangkuman: Dynamic Programming</h1>
+                <p class="summary-tag-label">Algorithmic Paradigms</p>
+
+                <section>
+                    <h2>1. Pengertian</h2>
+                    <p>Dynamic Programming (DP) adalah sebuah teknik optimasi matematis dan metode pemrograman komputer. Ini adalah paradigma desain algoritma yang digunakan untuk memecahkan masalah kompleks dengan memecahnya menjadi sub-masalah yang lebih sederhana dan tumpang tindih. Hasil dari sub-masalah yang sudah dipecahkan disimpan (memoized) untuk menghindari perhitungan berulang.</p>
+                    <p>DP sangat efektif ketika masalah menunjukkan dua karakteristik utama: **Optimal Substructure** dan **Overlapping Subproblems**.</p>
+                </section>
+
+                <section>
+                    <h2>2. Dua Karakteristik Kunci</h2>
+                    <ul>
+                        <li><strong>Optimal Substructure (Struktur Optimal Sub-masalah):</strong>
+                            <p>Solusi optimal dari masalah besar dapat dibangun dari solusi optimal sub-masalahnya. Artinya, jika kita tahu solusi terbaik untuk bagian-bagian kecil, kita bisa menggabungkannya untuk mendapatkan solusi terbaik masalah keseluruhan.</p>
+                        </li>
+                        <li><strong>Overlapping Subproblems (Sub-masalah Tumpang Tindih):</strong>
+                            <p>Ketika memecahkan masalah besar, algoritma yang efisien akan menemukan sub-masalah yang sama berulang kali. DP menyimpan solusi dari sub-masalah ini di memori (misalnya, dalam tabel atau array) agar tidak perlu dihitung ulang.</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>3. Pendekatan Implementasi</h2>
+                    <p>Ada dua pendekatan utama untuk mengimplementasikan solusi Dynamic Programming:</p>
+                    <h3>a. Memoization (Top-Down)</h3>
+                    <ul>
+                        <li>Pendekatan rekursif.</li>
+                        <li>Dimulai dari masalah besar dan memecahnya menjadi sub-masalah.</li>
+                        <li>Solusi dari sub-masalah disimpan (memoized) saat pertama kali dihitung. Jika sub-masalah yang sama muncul lagi, hasilnya langsung diambil dari penyimpanan.</li>
+                        <li>Mirip dengan rekursi murni, tetapi dengan "cache" hasil.</li>
+                    </ul>
+                    <h3>b. Tabulation (Bottom-Up)</h3>
+                    <ul>
+                        <li>Pendekatan iteratif.</li>
+                        <li>Dimulai dengan menyelesaikan sub-masalah terkecil terlebih dahulu.</li>
+                        <li>Secara iteratif membangun solusi untuk sub-masalah yang lebih besar berdasarkan solusi sub-masalah yang lebih kecil yang sudah dihitung.</li>
+                        <li>Biasanya melibatkan pengisian tabel secara sistematis.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>4. Contoh Algoritma Dynamic Programming</h2>
+                    <h3>a. Deret Fibonacci</h3>
+                    <p>Menghitung $F(N)$ (bilangan Fibonacci ke-N).</p>
+                    <ul>
+                        <li><strong>Masalah Rekursif Murni (tanpa DP):</strong> Sangat tidak efisien karena menghitung ulang banyak $F(k)$ yang sama berulang kali. Kompleksitas $O(2^N)$.</li>
+                        <li><strong>Dengan DP (Memoization/Tabulation):</strong>
+                            <ul>
+                                <li>$F(N) = F(N-1) + F(N-2)$</li>
+                                <li>Kita menyimpan $F(0), F(1), \dots, F(N-1)$ untuk menghitung $F(N)$.</li>
+                                <li>Kompleksitas Waktu: $O(N)$</li>
+                                <li>Kompleksitas Ruang: $O(N)$</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <h3>b. Longest Common Subsequence (LCS)</h3>
+                    <p>Mencari urutan karakter terpanjang yang sama yang ada di dua string (tidak harus berurutan). Misal: LCS dari "AGGTAB" dan "GXTXAYB" adalah "GTAB".</p>
+                    <ul>
+                        <li>Masalah ini memiliki Overlapping Subproblems dan Optimal Substructure.</li>
+                        <li>Biasanya diselesaikan dengan Tabulation (mengisi matriks).</li>
+                        <li>Kompleksitas Waktu: $O(M \times N)$, di mana M dan N adalah panjang string.</li>
+                    </ul>
+                    <h3>c. 0/1 Knapsack Problem</h3>
+                    <p>Mencari kombinasi item dengan nilai total maksimum yang bisa dimasukkan ke dalam tas dengan kapasitas terbatas, di mana item tidak bisa dipecah (hanya bisa diambil utuh atau tidak sama sekali).</p>
+                    <ul>
+                        <li>Sering diselesaikan dengan Tabulation (mengisi tabel `dp[i][w]` yang menunjukkan nilai maksimum dengan `i` item dan kapasitas `w`).</li>
+                        <li>Kompleksitas Waktu: $O(N \times W)$, di mana $N$ adalah jumlah item dan $W$ adalah kapasitas tas.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>5. Keuntungan & Kerugian</h2>
+                    <h3>Keuntungan:</h3>
+                    <ul>
+                        <li>Mengoptimalkan algoritma eksponensial menjadi polinomial (pseudo-polinomial).</li>
+                        <li>Menghindari perhitungan ulang yang tidak perlu.</li>
+                    </ul>
+                    <h3>Kerugian:</h3>
+                    <ul>
+                        <li>Bisa membutuhkan banyak ruang memori untuk menyimpan solusi sub-masalah.</li>
+                        <li>Tidak semua masalah cocok untuk DP (harus memiliki struktur optimal dan sub-masalah tumpang tindih).</li>
+                        <li>Implementasi bisa lebih kompleks daripada rekursi sederhana.</li>
+                    </ul>
+                </section>
+
+            </article>
+
+            <div class="summary-navigation">
+                <a href="../index.html#materials" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Kembali ke Materi</a>
+                <a href="activity-selection.html" class="btn btn-primary">Materi Selanjutnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Abdurrahman Dzaky Safrullah. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://github.com/ammangdzaky" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/ammangdzaky/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
