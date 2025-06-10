@@ -1,0 +1,127 @@
+/* css/summary-style.css */
+
+.summary-page-content {
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.breadcrumb-nav {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+}
+
+.breadcrumb {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0.9em;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    color: #6c757d;
+    content: "/";
+}
+
+.breadcrumb-item.active {
+    color: var(--secondary-color);
+}
+
+.summary-article h1 {
+    text-align: left;
+    font-size: 2.8em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.summary-tag-label {
+    display: inline-block;
+    background-color: #e0f7fa; /* Warna latar belakang cerah */
+    color: #007bff; /* Warna teks biru */
+    padding: 7px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-bottom: 30px;
+}
+
+.summary-article section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-article section:last-of-type {
+    border-bottom: none; /* Tidak ada border di bagian terakhir */
+}
+
+.summary-article h2 {
+    text-align: left;
+    font-size: 2em;
+    color: var(--dark-bg);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.summary-article p {
+    margin-bottom: 15px;
+}
+
+.summary-article ul,
+.summary-article ol {
+    margin-left: 25px;
+    margin-bottom: 15px;
+}
+
+.summary-article ul li,
+.summary-article ol li {
+    margin-bottom: 8px;
+}
+
+pre code {
+    display: block;
+    background-color: var(--dark-bg); /* Latar belakang gelap untuk kode */
+    color: #f8f8f2; /* Warna teks terang untuk kode */
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto; /* Scroll horizontal jika kode terlalu panjang */
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace; /* Font monospace untuk kode */
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+
+.summary-image-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.summary-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.image-caption {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-top: 10px;
+}
+
+.summary-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
+/* Sesuaikan font untuk kode jika Anda ingin. Anda bisa import font khusus untuk kode seperti Fira Code */
+/* Contoh:
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap');
+*/
