@@ -166,6 +166,33 @@ h2 {
     opacity: 0.9;
 }
 
+/* TAMBAHAN UNTUK TOMBOL GITHUB DI HERO SECTION */
+.btn-outline-light {
+    background: transparent;
+    color: white; /* Warna teks putih */
+    border: 2px solid white; /* Garis tepi putih */
+    padding: 12px 25px; /* Padding sama seperti btn-primary */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    text-decoration: none; /* Hilangkan underline */
+    display: inline-flex; /* Agar ikon dan teks sejajar */
+    align-items: center;
+    gap: 10px; /* Jarak antara teks dan ikon */
+}
+
+.btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.15); /* Background transparan putih saat hover */
+    color: white;
+    transform: translateY(-2px); /* Efek sedikit naik */
+}
+
+/* Utilitas margin top (mt-3) */
+.mt-3 {
+    margin-top: 20px; /* Bisa disesuaikan sesuai kebutuhan */
+}
+
+
 /* About Section */
 .about-section {
     background-color: white;
