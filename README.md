@@ -74,8 +74,3 @@ Tertarik pada pengembangan web, coding, dan algoritma.
 - GitHub: [github.com/ammangdzaky](https://github.com/ammangdzaky)
 
 
----
-
-## Lisensi
-
-Proyek ini dilisensikan di bawah [MIT License](LICENSE). 
